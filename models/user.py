@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """Module that holds the class User"""
-from models.base_model import BaseModel
+import models
 
-class User(BaseModel):
+class User(models.BaseModel):
     """
     Class to keep track of users
 

@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Module holding FilesStorage class"""
 import json
+import models
 
 class FileStorage:
     """
@@ -8,7 +9,7 @@ class FileStorage:
 
     Attributes
     __file_path - path to JSON file
-    __objects - Dictionary of dictionary objects
+    __objects - Dictionary of class instance objects
     """
 
     def __init__(self):
@@ -21,18 +22,23 @@ class FileStorage:
         return self.__objects
 
     def new(self, obj):
-        """Sets key/value pair in __object dictionary"""
-        self.__objects['{}.{}'.format(obj.__class__.__name__, obj.id)] = obj.to_dict()
+        """Puts a new object into __object dictionary"""
+        self.__objects['{}.{}'.format(obj.__class__.__name__, obj.id)] = obj
 
     def save(self):
         """serealizes __objects to JSON file"""
+        tmpobjdict = {}
+        for k, v in self.__objects.items():
+            tmpobjdict[k] = v.to_dict()
         with open(self.__file_path, "w", encoding="utf-8") as f:
-            json.dump(self.__objects, f)
+            json.dump(tmpobjdict, f)
 
     def reload(self):
         """deserealizes JSON file into __objects"""
         try:
             with open(self.__file_path, encoding="utf-8") as f:
-                self.__objects = json.load(f)
+                tempobjdict = json.load(f)
+            for k, v in tempobjdict.items():
+                self.__objects[k] = models.classes[tempobjdict[k]['__class__']](**v)
         except FileNotFoundError:
             pass

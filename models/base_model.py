@@ -2,7 +2,7 @@
 """Module containing the BaseModel class"""
 import uuid
 from datetime import datetime
-from models import storage
+import models
 from copy import deepcopy
 
 class BaseModel:
@@ -20,7 +20,7 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
-            storage.new(self)
+            models.storage.new(self)
         else:
             for k, v in kwargs.items():
                 if k in ("created_at", "updated_at"):
@@ -35,8 +35,7 @@ class BaseModel:
     def save(self):
         """Updates the attribute updated_at with current datettime and save to file"""
         self.updated_at = datetime.now()
-        storage.new(self)
-        storage.save()
+        models.storage.save()
 
     def to_dict(self):
         """returns a dictionary containing all attributes from __dict__,
