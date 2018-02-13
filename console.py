@@ -1,7 +1,10 @@
 #!/usr/bin/python3
-"""Module containing entrypoint to command interpreter for AirBnB_clone project"""
+"""Module containing entrypoint to command interpreter
+for AirBnB_clone project"""
 import cmd
 import models
+import shlex
+
 
 class HBNBCommand(cmd.Cmd):
     """
@@ -26,7 +29,8 @@ class HBNBCommand(cmd.Cmd):
             print(b.id)
 
     def do_show(self, arg):
-        """Print string representation of an instance based on provided class and ID"""
+        """Print string representation of an
+        instance based on provided class and ID"""
         args = arg.split()
         if arg == "":
             print("** class name missing **")
@@ -56,19 +60,20 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, arg):
         """Prints string representations of all instances of provided class"""
+        objlist = []
         if models.classes.get(arg) is None and arg != "":
             print("** class doesn't exist **")
         else:
             for k, v in self.objdict.items():
                 if arg == "":
-                    print(v)
+                    objlist.append(v)
                 elif arg in k:
-                    print(v)
-
+                    objlist.append(v)
+        print(objlist)
 
     def do_update(self, arg):
         """Updates an instance of provided class and ID with key/value pair"""
-        args = arg.split()
+        args = shlex.split(arg)
         if arg == "":
             print("** class name is missing **")
         elif models.classes.get(args[0]) is None:
@@ -82,9 +87,12 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) < 4:
             print("** value missing **")
         else:
-            setattr(self.objdict['{}.{}'.format(args[0], args[1])], args[2], args[3])
+            obj = self.objdict['{}.{}'.format(args[0], args[1])]
+            if getattr(obj, args[2], None) != None:
+                setattr(obj, args[2], type(getattr(obj, args[2], None))(args[3]))
+            else:
+                setattr(obj, args[2], args[3])
             models.storage.save()
-
 
     def emptyline(self):
         """Overwriting default action of emptyline to do nothing"""

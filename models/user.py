@@ -2,6 +2,7 @@
 """Module that holds the class User"""
 import models
 
+
 class User(models.BaseModel):
     """
     Class to keep track of users

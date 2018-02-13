@@ -2,6 +2,7 @@
 """Module holding the class Review"""
 import models
 
+
 class Review(models.BaseModel):
     """
     Class holding reviews for places

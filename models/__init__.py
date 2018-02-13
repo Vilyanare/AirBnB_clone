@@ -9,8 +9,8 @@ from models.state import State
 from models.city import City
 from models.review import Review
 
-classes = {'BaseModel' : BaseModel, 'User' : User, 'Review' : Review,
-'City' : City, 'State' : State, 'Place' : Place, 'Amenity' : Amenity}
+classes = {'BaseModel': BaseModel, 'User': User, 'Review': Review,
+           'City': City, 'State': State, 'Place': Place, 'Amenity': Amenity}
 
 storage = FileStorage()
 storage.reload()

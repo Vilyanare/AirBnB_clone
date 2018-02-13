@@ -5,6 +5,7 @@ from datetime import datetime
 import models
 from copy import deepcopy
 
+
 class BaseModel:
     """
     Class to setup all future classes in AirBnB_clone project
@@ -30,10 +31,17 @@ class BaseModel:
 
     def __str__(self):
         """returns a informal representation of BaseModel instance"""
-        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
+        return "[{}] ({}) {}".format(
+            self.__class__.__name__, self.id, self.__dict__)
+
+    def __repr__(self):
+        """returns a informal representation of BaseModel instance"""
+        return "[{}] ({}) {}".format(
+            self.__class__.__name__, self.id, self.__dict__)
 
     def save(self):
-        """Updates the attribute updated_at with current datettime and save to file"""
+        """Updates the attribute updated_at
+        with current datettime and save to file"""
         self.updated_at = datetime.now()
         models.storage.save()
 

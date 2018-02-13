@@ -6,6 +6,16 @@ class TestEngine(unittest):
     """Class to test the Engine module with Unittest"""
 
     """test all method"""
+    def test_all_method_base_model(self):
+        """Testing all method with BaseModel class"""
+    def test_all_method_user(self):
+        """Testing all method with User class"""
+    def test_all_method_state(self):
+        """Testing all method with State class"""
+    def test_all_method_(self):
+        """Testing all method with class"""
+    def test_all_method_(self):
+        """Testing all method with class"""
         """test with all classes"""
     """test new method"""
         """Test with all classes"""

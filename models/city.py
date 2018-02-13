@@ -2,6 +2,7 @@
 """Module holding the City class"""
 import models
 
+
 class City(models.BaseModel):
     """
     Class that holds city information

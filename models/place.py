@@ -2,6 +2,7 @@
 """Module holding the Place class"""
 import models
 
+
 class Place(models.BaseModel):
     """
     Class holding information building details

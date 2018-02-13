@@ -2,6 +2,7 @@
 """Module holding Amenity class"""
 import models
 
+
 class Amenity(models.BaseModel):
     """
     class containing amenities
