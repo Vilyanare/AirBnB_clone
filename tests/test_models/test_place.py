@@ -7,6 +7,6 @@ import models
 class TestPlace(unittest.TestCase):
     """Class for testing the Place class"""
 
-    def place_is_subclass_base_model(self):
+    def test_place_is_subclass_base_model(self):
         """Test if Place is a subclass of BaseModel"""
         self.assertTrue(issubclass(models.Place, models.BaseModel))
