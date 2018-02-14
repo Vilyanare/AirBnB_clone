@@ -88,8 +88,9 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
         else:
             obj = self.objdict['{}.{}'.format(args[0], args[1])]
-            if getattr(obj, args[2], None) != None:
-                setattr(obj, args[2], type(getattr(obj, args[2], None))(args[3]))
+            if getattr(obj, args[2], None) is not None:
+                setattr(obj, args[2], type(
+                    getattr(obj, args[2], None))(args[3]))
             else:
                 setattr(obj, args[2], args[3])
             models.storage.save()
