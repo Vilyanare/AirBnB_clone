@@ -18,7 +18,7 @@ class TestBaseModel(unittest.TestCase):
         files without deleting data in use"""
         path = models.storage._FileStorage__file_path
         if os.path.exists(path):
-            os.rename(path, noTouch)
+            os.rename(path, 'noTouch')
 
     def tearDown(self):
         """Renames deletes temp json files and renames old file back
@@ -29,24 +29,24 @@ class TestBaseModel(unittest.TestCase):
         if os.path.exists('noTouch'):
             os.rename('noTouch', path)
 
-    def test_id(self):
+    def test_id_base_model(self):
         """Test id created correctly and is unique every time"""
         testcase = models.BaseModel()
         self.assertEqual(len(testcase.id), 36)
         testcase2 = models.BaseModel()
         self.assertNotEqual(testcase.id, testcase2.id)
 
-    def test_created_at(self):
+    def test_created_at_base_model(self):
         """Test created_at created correctly"""
         testcase = models.BaseModel()
         self.assertEqual(type(testcase.created_at), datetime)
 
-    def test_updated_at(self):
+    def test_updated_at_base_model(self):
         """Test updated_at created correctly"""
         testcase = models.BaseModel()
         self.assertEqual(type(testcase.updated_at), datetime)
 
-    def test__str__method(self):
+    def test__str__method_base_model(self):
         """Test __str__ method for correct output"""
         testcase = models.BaseModel()
         self.assertEqual('[BaseModel]', testcase.__str__().split()[0])
@@ -54,7 +54,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual('{', testcase.__str__().split()[2][0])
         self.assertEqual(':', testcase.__str__().split()[2][-1])
 
-    def test_save_method(self):
+    def test_save_method_base_model(self):
         """Test save method"""
         path = models.storage._FileStorage__file_path
         testcase = models.BaseModel()
@@ -64,7 +64,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertTrue(os.path.exists(path))
         os.remove(path)
 
-    def test_to_dict_method(self):
+    def test_to_dict_method_base_model(self):
         """Test to_dict method"""
         testcase = models.BaseModel()
         self.assertEqual(type(testcase.to_dict()), dict)
@@ -73,7 +73,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertNotEqual(testcase.to_dict().get('updated_at'), None)
         self.assertEqual(testcase.to_dict().get('__class__'), 'BaseModel')
 
-    def test_kwargs(self):
+    def test_kwargs_base_model(self):
         """Test kwargs on init method"""
         testdict = {'created_at': '2018-02-14T04:20:11.699297',
                     'updated_at': '2018-02-14T04:20:11.699315',
