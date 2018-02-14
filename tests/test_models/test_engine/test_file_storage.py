@@ -38,12 +38,18 @@ class TestFileStorage(unittest.TestCase):
         my_storage.save()
         self.assertEqual(my_model.my_number, 89)
 
-#    def test_save_3(self):
-#        """tests if file contains correct id after saving"""
-#        my_model = BaseModel()
-#        my_storage = FileStorage()
-#        my_storage.save()
-#        desired_str = my_model.id
+    def test_save_3(self):
+        """tests if file contains correct id after saving"""
+        my_model = BaseModel()
+        my_storage = FileStorage()
+        my_storage.save()
+        desired_str = 'BaseModel.' + my_model.id
+        with open('file.json', "r", encoding="utf-8") as f:
+            if desired_str in f.read():
+                result = True
+            else:
+                result = False
+        self.assertEqual(result, True)
 
     def test_file_path(self):
         """testing if file saves as correct file path name"""
