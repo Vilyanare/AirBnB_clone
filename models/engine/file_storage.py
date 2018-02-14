@@ -3,6 +3,7 @@
 import json
 import models
 
+
 class FileStorage:
     """
     Handles serialization and deserialization of JSON files to instances
@@ -20,7 +21,8 @@ class FileStorage:
 
     def new(self, obj):
         """Puts a new object into __object dictionary"""
-        FileStorage.__objects['{}.{}'.format(obj.__class__.__name__, obj.id)] = obj
+        FileStorage.__objects['{}.{}'.format(
+            obj.__class__.__name__, obj.id)] = obj
 
     def save(self):
         """serealizes __objects to JSON file"""
@@ -36,6 +38,7 @@ class FileStorage:
             with open(FileStorage.__file_path, encoding="utf-8") as f:
                 tempobjdict = json.load(f)
             for k, v in tempobjdict.items():
-                FileStorage.__objects[k] = models.classes[tempobjdict[k]['__class__']](**v)
+                FileStorage.__objects[k] = models.classes[
+                    tempobjdict[k]['__class__']](**v)
         except FileNotFoundError:
             pass

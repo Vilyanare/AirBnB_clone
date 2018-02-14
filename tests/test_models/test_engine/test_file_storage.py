@@ -2,7 +2,7 @@
 """Unittest for engine module"""
 import unittest
 
-class TestEngine(unittest):
+class TestEngine(unittest.TestCase):
     """Class to test the Engine module with Unittest"""
 
     """test all method"""
@@ -18,9 +18,9 @@ class TestEngine(unittest):
         """Testing all method with class"""
         """test with all classes"""
     """test new method"""
-        """Test with all classes"""
+    """Test with all classes"""
     """test save method"""
-        """test with all classes"""
-        """Make sure updated_at is updated correctly"""
+    """test with all classes"""
+    """Make sure updated_at is updated correctly"""
     """test reload method"""
-        """test with all classes"""
+    """test with all classes"""
