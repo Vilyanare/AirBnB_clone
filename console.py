@@ -111,6 +111,9 @@ class HBNBCommand(cmd.Cmd):
         args = arg.split(' ', 2)
         obj = self.objdict['{}.{}'.format(args[0], args[1][1:-1])]
         args_to_dict = json.loads(args[2].replace("'", '"'))
+        if self.objdict.get('{}.{}'.format(args[0], args[1])) is None:
+            print("** no instance found **")
+            break
         for k, v in args_to_dict.items():
             if getattr(obj, k, None) is not None:
                 setattr(obj, k, type(
