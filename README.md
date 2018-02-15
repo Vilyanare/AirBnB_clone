@@ -31,16 +31,16 @@ Through this project the authors learned:
 ## File Descriptions
 | **File** | **Description** |
 | -------- | ----------- |
-| `base_model` | This file creates an instance of the class BaseModel. It\
-defines all common attributes/methods for other classes. Attributes include:\
-id (string): a string with an uuid when an instance is created, created_at:\
- assigned with the current datetime when an instance is created, updated_at:\
- assigned with the current datetime when an instance is created and it will be\
+| `base_model` | This file creates an instance of the class BaseModel. It
+defines all common attributes/methods for other classes. Attributes include:
+id (string): a string with an uuid when an instance is created, created_at:
+ assigned with the current datetime when an instance is created, updated_at:
+ assigned with the current datetime when an instance is created and it will be
  updated every time the object gets changed |
-| `file_storage` | This file creates an instance of the class FileStorage. It\
- serializes instances to a JSON file and deserializes JSON file to instances.\
- Attributes include: __file_path (private, string): that represents the path\
- to the JSON file, __objects (dictionary): initialized empty, but will store\
+| `file_storage` | This file creates an instance of the class FileStorage. It
+ serializes instances to a JSON file and deserializes JSON file to instances.
+ Attributes include: __file_path (private, string): that represents the path
+ to the JSON file, __objects (dictionary): initialized empty, but will store
  all objects by class name and id. |
 
 ## Function Descriptions for BaseModel
@@ -48,14 +48,10 @@ id (string): a string with an uuid when an instance is created, created_at:\
 | -------- | ----------- |
 | `__str__` | Function should print class name, instance id, and its dictionary |
 | `__repr__` | Function should print class name, instance id, and its dictionary |
-| `save` | Function should update public instance attribute, updated_at with t\
-he current datetime |
-| `to_dict` | Function should return a dictionary containing all keys/values of\
-the instance's dictionary. It should add a key called 'class' correlating with\
-the class of the object. The attributes, created_at and updated_at must be\
-converted to string objects in ISO format |
-| `__init__` | Function should print use kwargs arguments to construct the\
-instance. Each key of the dictionary in kwargs is an attribute name and each\
-value of the dictionary is the value of the attribute name. If kwargs does not\
+| `save` | Function should update public instance attribute, updated_at with the current datetime |
+| `to_dict` | Function should return a dictionary containing all keys/values ofthe instance's dictionary. It should add a key called 'class' correlating withthe class of the object. The attributes, created_at and updated_at must be converted to string objects in ISO format |
+| `__init__` | Function should print use kwargs arguments to construct the
+instance. Each key of the dictionary in kwargs is an attribute name and each
+value of the dictionary is the value of the attribute name. If kwargs does not
 exist, id and created_at attributes should be created as a new instance |
 
