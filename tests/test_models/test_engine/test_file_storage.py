@@ -84,10 +84,23 @@ class TestFileStorage(unittest.TestCase):
 
     def test_file_storage_objects_exists(self):
         """Test if __objects is created correctly"""
-        self.assertEqual(type(self.testcase._FileStorage__objects, dict)
+        self.assertEqual(type(self.testcase._FileStorage__objects), dict)
 
     def test_file_storage_all_method(self):
         """Test all method"""
+        my_model = BaseModel()
+        my_storage = FileStorage()
+        my_dict = my_storage.all()
+        self.assertEqual(my_dict, my_storage._FileStorage__objects)
+
 
     def test_file_storage_new_method(self):
         """Test new method"""
+        my_model = BaseModel()
+        my_storage = FileStorage()
+        my_storage.new(my_model)
+        my_storage.save()
+        desired_key = my_model.__class__.__name__ + '.' + my_model.id
+        for key in my_storage._FileStorage__objects:
+            if key == desired_key:
+                self.assertEqual(desired_key, key)
