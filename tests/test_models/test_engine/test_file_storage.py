@@ -84,4 +84,10 @@ class TestFileStorage(unittest.TestCase):
 
     def test_file_storage_objects_exists(self):
         """Test if __objects is created correctly"""
-        self.assertEqual(type(self.testcase.all()), dict)
+        self.assertEqual(type(self.testcase._FileStorage__objects, dict)
+
+    def test_file_storage_all_method(self):
+        """Test all method"""
+
+    def test_file_storage_new_method(self):
+        """Test new method"""
