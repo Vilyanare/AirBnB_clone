@@ -93,7 +93,6 @@ class TestFileStorage(unittest.TestCase):
         my_dict = my_storage.all()
         self.assertEqual(my_dict, my_storage._FileStorage__objects)
 
-
     def test_file_storage_new_method(self):
         """Test new method"""
         my_model = BaseModel()

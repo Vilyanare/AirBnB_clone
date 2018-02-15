@@ -120,8 +120,8 @@ class HBNBCommand(cmd.Cmd):
                     self.methods[args[1].split('()')[0]](self, args[0])
 
     methods = {'create': do_create, 'show': do_show,
-    'all': do_all, 'count': do_count, 'destroy': do_destroy,
-    'update': do_update}
+               'all': do_all, 'count': do_count, 'destroy': do_destroy,
+               'update': do_update}
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
