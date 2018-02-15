@@ -4,6 +4,7 @@ for AirBnB_clone project"""
 import cmd
 import models
 import shlex
+import json
 
 
 class HBNBCommand(cmd.Cmd):
@@ -62,14 +63,14 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, arg):
         """Prints string representations of all instances of provided class"""
         objlist = []
-        arg = arg.split()[0]
-        if models.classes.get(arg) is None and arg != "":
+        args = arg.split()
+        if len(args) > 0 and models.classes.get(args[0]) is None:
             print("** class doesn't exist **")
         else:
             for k, v in self.objdict.items():
                 if arg == "":
                     objlist.append(v)
-                elif arg in k:
+                elif arg.split()[0] in k:
                     objlist.append(v)
             print(objlist)
 
@@ -105,6 +106,19 @@ class HBNBCommand(cmd.Cmd):
                 count += 1
         print(count)
 
+    def update_dict(self, arg):
+        """Updates based on a dict"""
+        args = arg.split(' ', 2)
+        obj = self.objdict['{}.{}'.format(args[0], args[1][1:-1])]
+        args_to_dict = json.loads(args[2].replace("'", '"'))
+        for k, v in args_to_dict.items():
+            if getattr(obj, k, None) is not None:
+                setattr(obj, k, type(
+                    getattr(obj, k, None))(v))
+            else:
+                setattr(obj, k, v)
+        models.storage.save()
+
     def emptyline(self):
         """Overwriting default action of emptyline to do nothing"""
         pass
@@ -126,6 +140,12 @@ class HBNBCommand(cmd.Cmd):
             if args[1]:
                 for k, v in self.methods.items():
                     if k in args[1]:
+                        if k == 'update' and '{' in arg:
+                            for i in arg.split('(')[1].split(',', 1):
+                                commands += i
+                            commands = commands[:-1]
+                            self.update_dict( commands)
+                            break
                         for i in arg.split('(')[1].split(','):
                             commands += i
                         commands = commands[:-1]
