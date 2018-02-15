@@ -46,10 +46,8 @@ id (string): a string with an uuid when an instance is created, created_at:\
 ## Function Descriptions for BaseModel
 | **Function** | **Description** |
 | -------- | ----------- |
-| `__str__` | Function should print class name, instance id, and its dictiona\
-ry |
-| `__repr__` | Function should print class name, instance id, and its dictiona\
-ry |
+| `__str__` | Function should print class name, instance id, and its dictionary |
+| `__repr__` | Function should print class name, instance id, and its dictionary |
 | `save` | Function should update public instance attribute, updated_at with t\
 he current datetime |
 | `to_dict` | Function should return a dictionary containing all keys/values of\
