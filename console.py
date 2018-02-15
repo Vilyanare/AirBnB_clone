@@ -129,6 +129,7 @@ class HBNBCommand(cmd.Cmd):
                         for i in arg.split('(')[1].split(','):
                             commands += i
                         commands = commands[:-1]
+                        commands = commands.strip()
                         v(self, commands)
         else:
             print("*** uknown syntax: {}".format(arg))
