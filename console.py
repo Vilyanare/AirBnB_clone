@@ -144,7 +144,7 @@ class HBNBCommand(cmd.Cmd):
                             for i in arg.split('(')[1].split(',', 1):
                                 commands += i
                             commands = commands[:-1]
-                            self.update_dict( commands)
+                            self.update_dict(commands)
                             break
                         for i in arg.split('(')[1].split(','):
                             commands += i
