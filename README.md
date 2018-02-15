@@ -31,8 +31,7 @@ Through this project the authors learned:
 ## File Descriptions
 | **File** | **Description** |
 | -------- | ----------- |
-| `base_model` | This file creates an instance of the class BaseModel. It
-defines all common attributes/methods for other classes. Attributes include:
+| `base_model` | This file creates an instance of the class BaseModel. Itdefines all common attributes/methods for other classes. Attributes include:
 id (string): a string with an uuid when an instance is created, created_at:
  assigned with the current datetime when an instance is created, updated_at:
  assigned with the current datetime when an instance is created and it will be
