@@ -69,7 +69,7 @@ class HBNBCommand(cmd.Cmd):
                     objlist.append(v)
                 elif arg in k:
                     objlist.append(v)
-        print(objlist)
+            print(objlist)
 
     def do_update(self, arg):
         """Updates an instance of provided class and ID with key/value pair"""
@@ -95,6 +95,9 @@ class HBNBCommand(cmd.Cmd):
                 setattr(obj, args[2], args[3])
             models.storage.save()
 
+    def do_count(self):
+        """Show number of instances of a class"""
+
     def emptyline(self):
         """Overwriting default action of emptyline to do nothing"""
         pass
@@ -107,6 +110,18 @@ class HBNBCommand(cmd.Cmd):
         """If EOF then exit the interpreter"""
         print()
         return True
+
+    def default(self, arg):
+        """Default action if no do command found"""
+        args = arg.split('.')
+        if args[0] in models.classes:
+            if args[1]:
+                if args[1].split('()')[0] in self.methods:
+                    self.methods[args[1].split('()')[0]](self, args[0])
+
+    methods = {'create': do_create, 'show': do_show,
+    'all': do_all, 'count': do_count, 'destroy': do_destroy,
+    'update': do_update}
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
