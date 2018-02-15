@@ -74,7 +74,8 @@ class TestBaseModel(unittest.TestCase):
                     '__class__': 'BaseModel',
                     'id': '04fac3ec-9ed6-434e-9671-cc47420ebe3d'}
         self.testcase = models.BaseModel(**testdict)
-        self.assertEqual(self.testcase.id, '04fac3ec-9ed6-434e-9671-cc47420ebe3d')
+        self.assertEqual(self.testcase.id,
+                         '04fac3ec-9ed6-434e-9671-cc47420ebe3d')
         self.assertEqual(type(self.testcase.updated_at), datetime)
         self.assertEqual(type(self.testcase.created_at), datetime)
         self.assertEqual(self.testcase.updated_at.isoformat(),
