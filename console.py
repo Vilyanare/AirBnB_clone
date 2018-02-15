@@ -12,7 +12,8 @@ class HBNBCommand(cmd.Cmd):
 
     Attributes
     prompt - what to display for command line prompt
-    objdict -
+    objdict - Dictionary with all object instaces
+    methods - dictionary of methods in this class
     """
     prompt = "(hbnb) "
     objdict = models.storage._FileStorage__objects
@@ -31,7 +32,7 @@ class HBNBCommand(cmd.Cmd):
     def do_show(self, arg):
         """Print string representation of an
         instance based on provided class and ID"""
-        args = arg.split()
+        args = shlex.split(arg)
         if arg == "":
             print("** class name missing **")
         elif models.classes.get(args[0]) is None:
@@ -45,7 +46,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, arg):
         """Delete an instance based on provided class and ID"""
-        args = arg.split()
+        args = shlex.split(arg)
         if arg == "":
             print("** class name missing **")
         elif models.classes.get(args[0]) is None:
@@ -61,6 +62,7 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, arg):
         """Prints string representations of all instances of provided class"""
         objlist = []
+        arg = arg.split()[0]
         if models.classes.get(arg) is None and arg != "":
             print("** class doesn't exist **")
         else:
@@ -95,8 +97,13 @@ class HBNBCommand(cmd.Cmd):
                 setattr(obj, args[2], args[3])
             models.storage.save()
 
-    def do_count(self):
+    def count(self, arg):
         """Show number of instances of a class"""
+        count = 0
+        for k in self.objdict.keys():
+            if arg in k:
+                count += 1
+        print(count)
 
     def emptyline(self):
         """Overwriting default action of emptyline to do nothing"""
@@ -114,13 +121,20 @@ class HBNBCommand(cmd.Cmd):
     def default(self, arg):
         """Default action if no do command found"""
         args = arg.split('.')
+        commands = args[0] + ' '
         if args[0] in models.classes:
             if args[1]:
-                if args[1].split('()')[0] in self.methods:
-                    self.methods[args[1].split('()')[0]](self, args[0])
+                for k, v in self.methods.items():
+                    if k in args[1]:
+                        for i in arg.split('(')[1].split(','):
+                            commands += i
+                        commands = commands[:-1]
+                        v(self, commands)
+        else:
+            print("*** uknown syntax: {}".format(arg))
 
-    methods = {'create': do_create, 'show': do_show,
-               'all': do_all, 'count': do_count, 'destroy': do_destroy,
+    methods = {'show': do_show,
+               'all': do_all, 'count': count, 'destroy': do_destroy,
                'update': do_update}
 
 if __name__ == '__main__':
