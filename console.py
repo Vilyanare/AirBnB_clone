@@ -113,14 +113,14 @@ class HBNBCommand(cmd.Cmd):
         args_to_dict = json.loads(args[2].replace("'", '"'))
         if self.objdict.get('{}.{}'.format(args[0], args[1])) is None:
             print("** no instance found **")
-            break
-        for k, v in args_to_dict.items():
-            if getattr(obj, k, None) is not None:
-                setattr(obj, k, type(
-                    getattr(obj, k, None))(v))
-            else:
-                setattr(obj, k, v)
-        models.storage.save()
+        else:
+            for k, v in args_to_dict.items():
+                if getattr(obj, k, None) is not None:
+                    setattr(obj, k, type(
+                        getattr(obj, k, None))(v))
+                else:
+                    setattr(obj, k, v)
+            models.storage.save()
 
     def emptyline(self):
         """Overwriting default action of emptyline to do nothing"""
