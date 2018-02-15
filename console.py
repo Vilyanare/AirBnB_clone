@@ -14,7 +14,7 @@ class HBNBCommand(cmd.Cmd):
     prompt - what to display for command line prompt
     objdict -
     """
-    prompt = "(hbnb)"
+    prompt = "(hbnb) "
     objdict = models.storage._FileStorage__objects
 
     def do_create(self, arg):
@@ -75,7 +75,7 @@ class HBNBCommand(cmd.Cmd):
         """Updates an instance of provided class and ID with key/value pair"""
         args = shlex.split(arg)
         if arg == "":
-            print("** class name is missing **")
+            print("** class name missing **")
         elif models.classes.get(args[0]) is None:
             print("** class doesn't exist **")
         elif len(args) < 2:
