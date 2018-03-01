@@ -10,5 +10,5 @@
     width: 145px;
     display: block;
     text-indent:-9999px;
-    background: url(/Users/vilyanare/Vagrant/AirBnB_clone/web_static/images/hbnblogo.png);
+    background: url("../images/hbnblogo.png");
 }
